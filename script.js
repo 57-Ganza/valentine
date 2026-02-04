@@ -2,16 +2,18 @@ const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
 const music = document.getElementById("bgMusic");
 
-/* NO button shrink + escape */
-let scale = 1;
-noBtn.addEventListener("mouseover", () => {
-    const x = Math.random() * 300 - 150;
-    const y = Math.random() * 300 - 150;
+// YES button initial scale
+let yesScale = 1;
 
-    scale -= 0.1;
-    if (scale < 0.4) scale = 0.4;
+// NO button click grows YES
+noBtn.addEventListener("click", () => {
+    yesScale += 0.2; // increase YES button
+    yesBtn.style.transform = `scale(${yesScale})`;
 
-    noBtn.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
+    // If YES button is too big, hide NO button
+    if (yesScale >= 3) {
+        noBtn.style.display = "none";
+    }
 });
 
 /* Confetti */
